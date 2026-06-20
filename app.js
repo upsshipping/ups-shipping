@@ -93,15 +93,8 @@ alert(
 
 
 
-localStorage.setItem(
-
-"shipments",
-
-JSON.stringify(
-shipments
-)
-
-);
+alert("Shipment Created");
+console.log(shipments);
 
 }
 
