@@ -235,3 +235,32 @@ gap:20px;
 
 }
 }
+@media (max-width: 768px) {
+
+h1{
+font-size: 42px;
+}
+
+button{
+width: 90%;
+max-width: 300px;
+font-size: 18px;
+padding: 15px;
+margin-bottom: 15px;
+}
+
+nav{
+flex-direction: column;
+}
+
+.hero{
+height: auto;
+padding: 40px 20px;
+}
+
+img{
+max-width:100%;
+height:auto;
+}
+
+}
