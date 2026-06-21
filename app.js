@@ -1,51 +1,27 @@
 let shipments =
 JSON.parse(
-localStorage.getItem(
-"shipments"
-)
-)||[];
+localStorage.getItem("shipments")
+) || [];
 
-
-
-function saveShipment(){
-
-let shipment={
+// SAVE SHIPMENT
+function saveShipment() {
+alert("saveShipment running")
+let shipment = {
 
 track:
-document
-.getElementById(
-"track"
-).value,
+document.getElementById("track").value,
+
+sender:
+document.getElementById("sender").value,
 
 receiver:
-document
-.getElementById(
-"receiver"
-).value,
-
-address:
-document
-.getElementById(
-"address"
-).value,
-
-status:
-document
-.getElementById(
-"status"
-).value,
+document.getElementById("receiver").value,
 
 location:
-document
-.getElementById(
-"location"
-).value,
+document.getElementById("location").value,
 
 delivery:
-document
-.getElementById(
-"delivery"
-).value,
+document.getElementById("delivery").value,
 
 progress:
 document.getElementById("progress").value,
@@ -55,177 +31,90 @@ document.getElementById("history").value
 
 };
 
-
-
-let index=
-
-shipments.findIndex(
-
-x=>
-
-x.track===shipment.track
-
+shipments.push(shipment);
+alert("shipment added")
+localStorage.setItem(
+"shipments",
+JSON.stringify(shipments)
 );
 
-
-
-if(index!==-1){
-
-shipments[index]=shipment;
-
-alert(
-"Shipment Updated"
-);
+alert("Shipment created!");
 
 }
 
-else{
-
-shipments.push(
-shipment
-);
-
-alert(
-"Shipment Created"
-);
-
-}
-
-
-
-alert("Shipment Created");
-console.log(shipments);
-
-}
-
-
-
-
-
+// TRACK SHIPMENT
 function trackParcel(){
 
-shipments=
+alert("track running")
 
+let code=
+document.getElementById(
+"search"
+).value;
+
+let shipments=
 JSON.parse(
-
 localStorage.getItem(
-
 "shipments"
-
 )
-
 )||[];
 
-
-
 let found=
-
 shipments.find(
-
-x=>
-
-x.track===
-
-document
-.getElementById(
-"search"
-)
-.value
-
+x=>x.track===code
 );
-
-
-
-let result=
-
-document
-.getElementById(
-"result"
-);
-
-
 
 if(found){
 
-result.innerHTML=`
+document.getElementById(
+"result"
+).innerHTML=
+"Shipment Found";
 
-Tracking:
-${found.track}
+}else{
 
-<br><br>
-
-Receiver:
-${found.receiver}
-
-<br><br>
-
-Address:
-${found.address}
-
-<br><br>
-
-Status:
-
-<span style="font-weight:bold">
-
-${found.status}
-
-</span>
-
-<br><br>
-
-Current Location:
-${found.location}
-
-<br><br>
-
-Estimated Delivery:
-${found.delivery}
-
-<br><br>
-
-Shipment Progress:
-${found.progress}
-
-<br><br>
-
-Shipment History:
-
-<br>
-
-${found.history}
-
-<br><br>
-
-<iframe
-
-width="100%"
-
-height="350"
-
-style="border:0"
-
-src="https://maps.google.com/maps?q=${encodeURIComponent(found.location)}&output=embed">
-
-</iframe>
-
-`;
+document.getElementById(
+"result"
+).innerHTML=
+"Shipment not found";
 
 }
 
-else{
 
-result.innerHTML=
 
-"Shipment Not Found";
+let code=
+document.getElementById(
+"trackInput"
+).value;
+
+let shipments=
+JSON.parse(
+localStorage.getItem(
+"shipments"
+)
+)||[];
+
+let found=
+shipments.find(
+x=>x.track===code
+);
+
+if(found){
+
+document.getElementById(
+"result"
+).innerHTML=
+
+"Shipment Found";
+
+}else{
+
+document.getElementById(
+"result"
+).innerHTML=
+
+"Shipment not found";
 
 }
-
-}
-function logout(){
-
-window.location=
-
-"index.html";
 
 }
